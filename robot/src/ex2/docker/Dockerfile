@@ -41,18 +41,7 @@ RUN echo 'host:1234' | chpasswd
 RUN adduser host sudo
 
 RUN mkdir /var/run/sshd
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-ENV NOTVISIBLE "in users profile"
-RUN echo "export VISIBLE=now" >> /etc/profile
-
-CMD ["/usr/sbin/sshd"]
-
-# make systemd-detect-virt return "docker"
-# See: https://github.com/systemd/systemd/blob/aa0c34279ee40bce2f9681b496922dedbadfca19/src/basic/virt.c#L434
 RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 
 EXPOSE 22
-#USER host
-#WORKDIR /home/host
-CMD ["/bin/bash"]
+CMD ["/usr/sbin/sshd", "-D"]
