@@ -27,14 +27,14 @@ Ping a reachable host
 
 Suite setup
     Given I create a container named host1 with image "ubuntu-demo"
+    And I create a container named host2 with image "ubuntu-demo"
     Then The container host1 is up
-    Given I create a container named host2 with image "ubuntu-demo"
-    Then The container host2 is up
+    And The container host2 is up
 
 Suite teardown
     Given I destroy the container host1
-    Given I destroy the container host2
-    And The container host1 is down
+    And I destroy the container host2
+    Then The container host1 is down
     And The container host2 is down
 
 Test setup
