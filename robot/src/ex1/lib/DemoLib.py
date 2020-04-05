@@ -13,3 +13,7 @@ class DemoLib(object):
     def custom_keyword_with_parameter(self, param):
         """Example of a custom keyword with parameter"""
         print("I'm alive and I have a parameter: {}".format(param))
+
+    @keyword("Hello, I'm a costuom keyword who will fail")
+    def custom_keyword_with_failure(self):
+        raise Exception("Just an example, it's ok")

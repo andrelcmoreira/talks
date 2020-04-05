@@ -17,13 +17,18 @@ ${variable}  Robot is cool!
 Test case
     [Documentation]   This is a sample test case. In 'documentation' section, we can provide some
     ...               information about the test like, what is being tested and the expected results.
-    [Tags]            Tag1
+    [Tags]            TagSuccess
     Hello, I'm a custom keyword
 
 Another test case
     [Documentation]   This is another test.
-    [Tags]            Tag1
+    [Tags]            TagSuccess
     Hello, I'm a custom keyword with parameter "${variable}"
+
+Another test case with failure
+    [Documentation]   This is a test case with failure.
+    [Tags]            TagFailure
+    Hello, I'm a costuom keyword who will fail
 
 *** Keywords ***
 

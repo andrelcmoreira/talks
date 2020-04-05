@@ -1,10 +1,10 @@
 from robot.api.deco import keyword
 from json import load
+from re import search
 from paramiko import SSHClient, AutoAddPolicy
 from paramiko.ssh_exception import NoValidConnectionsError
 from docker import from_env
 from docker.errors import NotFound
-from re import search
 
 class PingLib(object):
 
@@ -30,7 +30,7 @@ class PingLib(object):
         except FileNotFoundError:
             raise RuntimeError('the config file specified does not exist!')
 
-    @keyword("The container ${name} is ${state}")
+    @keyword('The container ${name} is ${state}')
     def check_container_state(self, name, state):
         """
         Check the operational state of a given container.
@@ -55,7 +55,7 @@ class PingLib(object):
         except KeyError:
             raise RuntimeError('the specified container does not exist!')
 
-    @keyword("I send ${pkt_count} packets to ${hostname_2} from ${hostname_1} using the ping tool")
+    @keyword('I send ${pkt_count} packets to ${hostname_2} from ${hostname_1} using the ping tool')
     def ping(self, pkt_count, hostname_2, hostname_1):
         """
         Send a given number of packets from the host 'hostname_1' to host 'hostname_2' using ping.
@@ -80,7 +80,7 @@ class PingLib(object):
         except KeyError:
             raise RuntimeError('one or more specified hosts are not defined on config file!')
 
-    @keyword("The host ${hostname_1} must receive ${pkt_count} reply packets from ${hostname_2}")
+    @keyword('The host ${hostname_1} must receive ${pkt_count} reply packets from ${hostname_2}')
     def must_receive(self, hostname_1, pkt_count, hostname_2):
         """
         Check if a given number of packets was received from 'hostname_2' to 'hostname_1'.
