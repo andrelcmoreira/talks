@@ -35,10 +35,11 @@ RUN set -xe \
 # https://github.com/docker/docker/blob/9a9fc01af8fb5d98b8eec0740716226fadb3735c/contrib/mkimage/debootstrap#L134-L151
 	&& echo 'Apt::AutoRemove::SuggestsImportant "false";' > /etc/apt/apt.conf.d/docker-autoremove-suggests
 
-RUN apt update && apt install -y iputils-ping net-tools tcpdump sudo build-essential vim openssh-server
+RUN apt update && apt install -y iputils-ping net-tools sudo build-essential vim openssh-server
 RUN useradd host -m -s /bin/bash
 RUN echo 'host:1234' | chpasswd
 RUN adduser host sudo
+RUN echo 'host ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN mkdir /var/run/sshd
 RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
